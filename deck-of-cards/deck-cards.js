@@ -6,9 +6,8 @@ let deckId;
 // PART 1
 async function drawSingleCard() {
   let response = await axios.get(shuffleAndDrawCard);
-  let cardValue = response.data.cards[0].value;
-  let cardSuit = response.data.cards[0].suit;
-  $("body").append(`<p>${cardValue} of ${cardSuit}</p>`)
+  let {value, suit} = response.data.cards[0];
+  $("body").append(`<p>${value} of ${suit}</p>`)
 }
 
 // drawSingleCard();
@@ -44,6 +43,8 @@ async function drawCard() {
   let card = await axios.get(`${base_url}${deckId}/draw`);
   let cardValue = card.data.cards[0].value;
   let cardSuit = card.data.cards[0].suit;
+
+  let myCard = {...card.data.card[0]} //shallow copy of object
 
   $("#card-container").append(`<p>${cardValue} of ${cardSuit}</p>`)
   console.log(card.data.remaining);

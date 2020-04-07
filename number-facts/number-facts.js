@@ -9,8 +9,7 @@ async function getNumberFact(number) {
       }
     });
     console.log(response);
-  }
-  catch(error) {
+  } catch(error) {
     console.log("error");
   }
 }
@@ -30,9 +29,9 @@ async function multipleRequests(){
 
 async function multipleFacts(){ 
   try {
-    let resp_arr = await axios.all([axios.get(`${BASE_URL}/99`), axios.get(`${BASE_URL}/-100`)])
+    let respArr = await axios.all([axios.get(`${BASE_URL}/99`), axios.get(`${BASE_URL}/-100`)])
   
-    for (let response of resp_arr) {
+    for (let response of respArr) {
       console.log(response.data);
       $("body").append(`<p>${response.data}</p>`)
     }
@@ -42,19 +41,3 @@ async function multipleFacts(){
 }
 
 multipleFacts();
-
-// multipleRequests();
-
-// async function multipleFacts(num, factsnum) {
-//   let facts = [];
-  
-//   for (let i = 0; i < factsnum; i++) {
-//     resp = await axios.get(`${BASE_URL}/${num}`);
-//     facts.push(resp.data); 
-//   }
-//   for (let fact of facts) {
-//     $("body").append(`<p>${fact}</p>`)
-//   }
-// }
-
-// multipleFacts(19, 4);
